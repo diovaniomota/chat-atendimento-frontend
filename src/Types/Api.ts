@@ -1,3 +1,3 @@
-export type APEError = {
+export type APIError = {
     detail: string
 }
