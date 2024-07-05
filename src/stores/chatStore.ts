@@ -1,6 +1,6 @@
 import { Chat } from "@/Types/Chat"
 import { Message } from "@/Types/Message"
-import create from 'zustand'  // Adicione essa linha para importar create
+import create from 'zustand'  
 
 export type ChatState = {
     showNewChat: boolean,
@@ -8,12 +8,12 @@ export type ChatState = {
     chat: Chat | null,
     chatMessages: Message[] | null,
     loading: boolean,
-    showChatsList: boolean  // Corrigido para boolean com minúscula
+    showChatsList: boolean  
 }
 
 export type ChatActions = {
     setShowNewChat: (show: boolean) => void,
-    setShowChatsList: (show: boolean) => void,  // Corrigido o nome da função
+    setShowChatsList: (show: boolean) => void,  
     setChat: (chat: Chat | null) => void,
     setChatMessages: (messages: Message[] | null) => void,
     setChats: (chats: Chat[] | null) => void,
@@ -30,7 +30,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
     loading: false,
     showChatsList: false,
     setShowNewChat: (show) => set({ showNewChat: show }),
-    setShowChatsList: (show) => set({ showChatsList: show }),  // Corrigido o nome da função
+    setShowChatsList: (show) => set({ showChatsList: show }),  
     setChat: (chat) => chat?.id != get().chat?.id && set({ chat, chatMessages: null }),
     setChatMessages: (messages) => set({ chatMessages: messages }),
     setChats: (chats) => set({ chats }),
