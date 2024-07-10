@@ -33,6 +33,10 @@
       --ring: 222.2 84% 4.9%;
 
       --radius: 0.5rem;
+
+      /* layout variables */
+      --header-height: 4rem;
+      --app-height: calc(100vh - var(var(var(--header-height))))
     }
 
     .dark {
