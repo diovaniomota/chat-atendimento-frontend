@@ -35,7 +35,7 @@ export const handleSignUp = async (data: SignUpData) => {
     return response
 }
 
-export const haldleGetUser = async () => {
+export const handleGetUser = async () => {
     const  authCookie = cookies().get(process.env.NEXT_PUBLIC_AUTH_KEY as string)?.value
 
     const response = await fetch(process.env.NEXT_PUBLIC_AUTH_KEY + '/api/v1/accounts/me', {
@@ -52,7 +52,7 @@ export const haldleGetUser = async () => {
     return null
 }
 
-export const haldleSignOut = () => {
+export const handleSignOut = () => {
     cookies().delete(process.env.NEXT_PUBLIC_AUTH_KEY as string)
     redirect('/auth/signin')
 }
