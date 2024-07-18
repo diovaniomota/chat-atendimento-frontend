@@ -7,7 +7,7 @@ export type AuthState = {
 };
 
 export type AuthActions = {
-    setUser: (user: User | null) => void; 
+    setUser: (user: User) => void; 
     clearUser: () => void;
 };
 

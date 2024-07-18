@@ -1,6 +1,6 @@
 import { Chat } from "@/Types/Chat"
 import { Message } from "@/Types/Message"
-import create from 'zustand'  
+import { create } from 'zustand';
 
 export type ChatState = {
     showNewChat: boolean,
