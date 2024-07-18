@@ -2,12 +2,12 @@
 
 import { useAuthStore } from "@/stores/authStore";
 import { useChatStore } from "@/stores/chatStore";
-import { User } from "@/Types/User"
+import { User } from "@/types/User"
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Header } from "./Header";
 import { BarLoader } from 'react-spinners';
-import { LeftSide } from "./leftSide";
+import { LeftSide } from "./LeftSide";
 import {
     Sheet,
     SheetContent
@@ -30,7 +30,7 @@ export const MainLayout = ({ user, children }: Props) => {
         if (user) auth.setUser(user)
 
         setLoading(false)
-    }, [auth, user])
+    }, [])
 
     return (
         <div className="h-screen w-screen overflow-hidden bg-slate-200 dark:bg-slate-950">

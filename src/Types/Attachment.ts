@@ -13,6 +13,6 @@ export type AudioAttachment = {
 }
 
 export type Attachment = {
-    file?: FileAttachment
+    file?: FileAttachment,
     audio?: AudioAttachment
 }

@@ -1,6 +1,5 @@
 import { Attachment } from "./Attachment"
-import { User } from './User'
-
+import { User } from "./User"
 
 export type Message = {
     id: number,
@@ -13,7 +12,6 @@ export type Message = {
 
 export type APIGetMessages = {
     messages: Message[]
-
 }
 
 export type APICreateMessage = {
@@ -31,10 +29,9 @@ export type UpdateMessageEvent = {
         chat_id: number,
         message_id?: number
     }
-
 }
 
-export type MarkMessageAsSeenEvent  = {
+export type MarkMessageAsSeenEvent = {
     query: {
         chat_id: number,
         exclude_user_id: number

@@ -1,26 +1,26 @@
-import { Message } from "./Message";
-import { User } from './User';
+import { Message } from "./Message"
+import { User } from "./User"
 
 export type Chat = {
     id: number,
     last_message: Message | null,
     unseen_count: number,
-    user: User, // Corrigido de 'unser' para 'user'
+    user: User,
     viewed_at: string | null,
     created_at: string
-};
+}
 
 export type APIGetChats = {
     chats: Chat[]
-};
+}
 
 export type APICreateChat = {
     chat: Chat
-};
+}
 
 export type APIDeleteChat = {
     success: boolean
-};
+}
 
 export type UpdateChatEvent = {
     type?: "delete",
@@ -28,4 +28,4 @@ export type UpdateChatEvent = {
         chat_id?: number,
         users: number[]
     }
-};
+}

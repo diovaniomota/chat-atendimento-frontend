@@ -1,7 +1,7 @@
 import { createChatMessage, deleteChatMessage, getChatMessages } from "@/lib/requests"
 import { useAuthStore } from "@/stores/authStore"
 import { useChatStore } from "@/stores/chatStore"
-import { MarkMessageAsSeenEvent, UpdateMessageEvent } from "@/Types/Message"
+import { MarkMessageAsSeenEvent, UpdateMessageEvent } from "@/types/Message"
 import { useEffect, useRef } from "react"
 import { toast } from "sonner"
 import { socket } from "../Layouts/Providers"
@@ -17,7 +17,6 @@ export const Chat = () => {
 
     const bodyMessagesRef = useRef<HTMLDivElement>(null)
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleGetMessages = async () => {
         if (!chat) return;
 
@@ -65,7 +64,7 @@ export const Chat = () => {
 
     useEffect(() => {
         if (chatMessages === null) handleGetMessages()
-    }, [chat, chatMessages, handleGetMessages])
+    }, [chat])
 
     useEffect(() => {
         if (chatMessages && chatMessages.length > 0) {
@@ -114,7 +113,7 @@ export const Chat = () => {
             socket.off('update_chat_message', handleUpdateMessage);
             socket.off('mark_messages_as_seen', handleMarkMessageAsSeen);
         }
-    }, [chat?.id, chatMessages, setChatMessages, user?.id])
+    }, [chatMessages])
 
     return (
         <div className="flex flex-col h-full">

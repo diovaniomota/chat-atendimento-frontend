@@ -10,17 +10,18 @@ const Avatar = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & {
     isOnline?: boolean
   }
->(({ className, isOnline = false,  ...props }, ref) => (
+>(({ className, isOnline = false, ...props }, ref) => (
   <div className="relative">
-    {isOnline && <div className="absolute bg-emerald-400 z-10 rounded-full border-slate-300 size-3 bottom-0.5 right-0"/>}
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
-      className
-    )}
-    {...props}
-  />
+    {isOnline && <div className="absolute bg-emerald-400 z-10 rounded-full border-slate-300 size-3 bottom-0.5 right-0" />}
+
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={cn(
+        "relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    />
   </div>
 ))
 Avatar.displayName = AvatarPrimitive.Root.displayName

@@ -61,7 +61,7 @@ export const NewChat = () => {
                                         <FormControl>
                                             <Input
                                                 {...field}
-                                                placeholder="Ex: seunome@email.com"
+                                                placeholder="Ex: joao2000@gmail.com"
                                             />
                                         </FormControl>
                                         <FormMessage />

@@ -3,7 +3,7 @@
 import { SignInData, SignUpData } from "@/lib/schemas/authSchema";
 import { signIn, signUp } from "@/lib/requests";
 import { cookies } from "next/headers";
-import { User } from "@/Types/User";
+import { User } from "@/types/User";
 import { redirect } from "next/navigation";
 
 export const handleSignIn = async (data: SignInData) => {

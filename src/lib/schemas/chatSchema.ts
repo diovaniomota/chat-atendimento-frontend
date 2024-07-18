@@ -1,10 +1,8 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-// new chat
-
+/* New Chat */
 export const newChatSchema = z.object({
-    email: z.string().email({message: "email inválido"})
+    email: z.string().email({ message: "Email inválido" })
 })
-
 
 export type NewChatData = z.infer<typeof newChatSchema>

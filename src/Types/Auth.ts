@@ -1,7 +1,7 @@
 import { User } from './User'
 
 export type APISignIn = {
-    user: User, 
+    user: User,
     access_token: string
 }
 

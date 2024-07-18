@@ -9,11 +9,11 @@ const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: {
-        template: "%s | Dart Atendimento",
-        default: "Home | Dart Atendimento"
+        template: "%s | Atendimento",
+        default: "Home | Atendimento"
     },
     icons: {
-        icon: "/iconchat.png"
+        icon: "/grftalk.png"
     }
 };
 

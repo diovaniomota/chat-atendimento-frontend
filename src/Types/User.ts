@@ -1,4 +1,4 @@
-export type User =  {
+export type User = {
     id: number,
     avatar: string,
     name: string,
@@ -7,5 +7,5 @@ export type User =  {
 }
 
 export type APIUpdateUser = {
-    user: User,
+    user: User
 }
