@@ -1,69 +1,68 @@
-import { getChats } from "@/lib/requests"
-import { useAuthStore } from "@/stores/authStore"
-import { useChatStore } from "@/stores/chatStore"
-import { Chat, UpdateChatEvent } from "@/types/Chat"
-import { useEffect, useState } from "react"
-import { toast } from "sonner"
-import { socket } from "../Providers"
-import { NewChat } from "./NewChat"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { CheckCheck, FileText, Mic, Plus, Search } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import dayjs from "dayjs"
-import { Badge } from "@/components/ui/badge"
+import { getChats } from "@/lib/requests";
+import { useAuthStore } from "@/stores/authStore";
+import { useChatStore } from "@/stores/chatStore";
+import { Chat, UpdateChatEvent } from "@/types/Chat";
+import { useEffect, useState, useCallback } from "react";
+import { toast } from "sonner";
+import { socket } from "../Providers";
+import { NewChat } from "./NewChat";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { CheckCheck, FileText, Mic, Plus, Search } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import dayjs from "dayjs";
+import { Badge } from "@/components/ui/badge";
 
 type Props = {
     variant?: "mobile" | "desktop"
-}
+};
 
 export const LeftSide = ({ variant = "desktop" }: Props) => {
-    const { chat: currentChat, chats, setChats, setChat, setShowNewChat } = useChatStore()
-    const { user } = useAuthStore()
+    const { chat: currentChat, chats, setChats, setChat, setShowNewChat } = useChatStore();
+    const { user } = useAuthStore();
 
-    const [queryInput, setQueryInput] = useState('')
-    const [chatsFiltered, setChatsFiltered] = useState<Chat[]>([])
+    const [queryInput, setQueryInput] = useState('');
+    const [chatsFiltered, setChatsFiltered] = useState<Chat[]>([]);
 
-    const handleGetChats = async () => {
-        const response = await getChats()
+    const handleGetChats = useCallback(async () => {
+        const response = await getChats();
 
         if (response.data) {
-            setChats(response.data.chats)
+            setChats(response.data.chats);
         }
-    }
+    }, [setChats]);
 
-    const handleFilterChats = () => {
+    const handleFilterChats = useCallback(() => {
         if (!chats) return;
-
-        setChatsFiltered(chats.filter(chat => chat.user.name.toLowerCase().includes(queryInput.toLowerCase())))
-    }
-
-    useEffect(() => {
-        handleGetChats()
-    }, [])
+        setChatsFiltered(chats.filter(chat => chat.user.name.toLowerCase().includes(queryInput.toLowerCase())));
+    }, [chats, queryInput]);
 
     useEffect(() => {
-        if (!queryInput && chats) setChatsFiltered(chats)
-    }, [chats])
+        handleGetChats();
+    }, [handleGetChats]);
+
+    useEffect(() => {
+        if (!queryInput && chats) setChatsFiltered(chats);
+    }, [chats, queryInput]);
 
     useEffect(() => {
         const handleUpdateChat = (data: UpdateChatEvent) => {
             if (user && data.query.users.includes(user.id)) {
-                handleGetChats()
+                handleGetChats();
             }
 
             if (data.type === "delete" && data.query.chat_id === currentChat?.id) {
-                setChat(null)
-                toast.info('A conversa foi deleteda', { position: "top-center" })
+                setChat(null);
+                toast.info('A conversa foi deletada', { position: "top-center" });
             }
-        }
+        };
 
         socket.on('update_chat', handleUpdateChat);
 
         return () => {
             socket.off('update_chat', handleUpdateChat);
-        }
-    }, [currentChat])
+        };
+    }, [currentChat, user, handleGetChats, setChat]);
 
     return (
         <div className={`bg-slate-100 dark:bg-slate-900 border-r border-slate-50 dark:border-slate-800 ${variant === "mobile" ? 'w-auto' : 'w-96'} h-app overflow-auto`}>
@@ -92,8 +91,7 @@ export const LeftSide = ({ variant = "desktop" }: Props) => {
                     onClick={() => setShowNewChat(true)}
                 >
                     <Plus className="size-5" />
-
-                    <span className="text-sm">Nova conversa</span>
+                    <span className="text-sm">Nova Conversa</span>
                 </Button>
             </div>
 
@@ -160,5 +158,5 @@ export const LeftSide = ({ variant = "desktop" }: Props) => {
                 ))}
             </div>
         </div>
-    )
+    );
 }

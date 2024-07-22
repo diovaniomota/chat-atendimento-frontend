@@ -1,7 +1,7 @@
-import { useAuthStore } from "@/stores/authStore"
-import { AudioAttachment, FileAttachment } from "@/types/Attachment"
-import { Message } from "@/types/Message"
-import { CheckCheck, EllipsisVertical, FileText, Trash2 } from "lucide-react"
+import { useAuthStore } from "@/stores/authStore";
+import { AudioAttachment, FileAttachment } from "@/types/Attachment";
+import { Message } from "@/types/Message";
+import { CheckCheck, EllipsisVertical, FileText, Trash2 } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -9,8 +9,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import dayjs from "dayjs"
+} from "@/components/ui/dropdown-menu";
+import dayjs from "dayjs";
+import Image from 'next/image';
 
 type Props = {
     data: Message,
@@ -21,10 +22,13 @@ const FileMessage = ({ data }: { data: FileAttachment }) => (
     <div className="flex items-center">
         <a href={data.src} target="_blank">
             {data.content_type.startsWith('image/') ?
-                <img
+                <Image
                     className="md:max-w-96 h-80 object-cover rounded-md"
                     src={data.src}
                     alt={data.name}
+                    layout="intrinsic"
+                    width={384} // substitua pelo valor correto
+                    height={320} // substitua pelo valor correto
                 />
                 :
                 data.content_type.startsWith('video/') ?
