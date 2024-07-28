@@ -1,9 +1,3 @@
-import { NewChatData, newChatSchema } from "@/lib/schemas/chatSchema"
-import { useChatStore } from "@/stores/chatStore"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { createChat } from "@/lib/requests"
-import { toast } from "sonner"
 import { Button } from "@/components/ui/button"
 import {
     Drawer,
@@ -12,10 +6,16 @@ import {
     DrawerDescription,
     DrawerFooter,
     DrawerHeader,
-    DrawerTitle
+    DrawerTitle,
 } from "@/components/ui/drawer"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { createChat } from "@/lib/requests"
+import { NewChatData, newChatSchema } from "@/lib/schemas/chatSchema"
+import { useChatStore } from "@/stores/chatStore"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 
 export const NewChat = () => {
     const { setChat, showNewChat, setShowNewChat } = useChatStore()
@@ -33,7 +33,7 @@ export const NewChat = () => {
         if (response.data) {
             setChat(response.data.chat)
             setShowNewChat(false)
-            form.setValue("email", "")
+            form.setValue('email', "")
 
             return;
         }
@@ -48,7 +48,7 @@ export const NewChat = () => {
                     <form onSubmit={form.handleSubmit(onSubmit)} className="mx-auto w-full max-w-lg">
                         <DrawerHeader>
                             <DrawerTitle>Nova Conversa</DrawerTitle>
-                            <DrawerDescription>Insira o email do usuário, para iniciar uma nova conversa!</DrawerDescription>
+                            <DrawerDescription>Insira o email do usuário, para iniciar uma nova conversa!</DrawerDescription>
                         </DrawerHeader>
 
                         <div className="p-4">
@@ -59,10 +59,7 @@ export const NewChat = () => {
                                     <FormItem>
                                         <FormLabel>Email</FormLabel>
                                         <FormControl>
-                                            <Input
-                                                {...field}
-                                                placeholder="Ex: joao2000@gmail.com"
-                                            />
+                                            <Input placeholder="Ex: joao2000@gmail.com" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
